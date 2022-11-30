@@ -26,7 +26,7 @@ function SearchedArt({
             to={`/${result.id}`}
             className='m-2 bg-slate-400 border-black border-2'
             key={result.id}>
-            <div className='text-center'>
+            <div className='text-center h-full w-full'>
               {result.title.length > 70 ? (
                 <p className='min-h-[140px] font-medium text-xl'>
                   {result.title}
@@ -38,7 +38,7 @@ function SearchedArt({
               )}
 
               <img
-                className='h-96 w-full mx-auto'
+                className='mx-auto object-contain'
                 src={`https://www.artic.edu/iiif/2/${result?.image_id}/full/843,/0/default.jpg`}
                 alt={result.thumbnail?.alt_text}
               />

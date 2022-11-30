@@ -32,7 +32,7 @@ function Artwork() {
           <img
             src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
             alt={artwork.thumbnail?.alt_text}
-            className='w-fit h-fit mx-auto'
+            className='mx-auto h-full w-full'
           />
           {/* Image Artist */}
           <p className='text-end lg:pr-20 py-2 text-lg font-bold'>
