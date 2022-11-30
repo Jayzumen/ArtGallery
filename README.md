@@ -2,5 +2,5 @@
 
 # Build with
 
-npm create vite
+"npm create vite@latest" 
 using React, tailwind css and javascript
