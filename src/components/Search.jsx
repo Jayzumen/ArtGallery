@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchedArt from "./SearchedArt";
 import { fetchData } from "../fetchData";
 
 function Search() {
   const [query, setQuery] = useState("");
   const [art, setArt] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const handleClickNext = () => {
+    setPageNumber(pageNumber + 1);
+  };
+
+  const handleClickPrev = () => {
+    pageNumber <= 1 ? 0 : setPageNumber(pageNumber - 1);
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -23,14 +32,23 @@ function Search() {
     if (query.length < 3) {
       return;
     }
-    fetchData(query).then((results) => {
+    fetchData(query, pageNumber).then((results) => {
       if (results && results.data) {
-        console.log(results);
+        // console.log(results);
         setArt(results.data);
+        setPageNumber(1);
       }
     });
     e.target.reset();
   };
+
+  useEffect(() => {
+    fetchData(query, pageNumber).then((results) => {
+      if (results && results.data) {
+        setArt(results.data);
+      }
+    });
+  }, [pageNumber]);
 
   return (
     <div className='h-full w-full py-5'>
@@ -82,7 +100,12 @@ function Search() {
           </div>
         </form>
       </div>
-      <SearchedArt art={art} />
+      <SearchedArt
+        art={art}
+        handleClickNext={handleClickNext}
+        handleClickPrev={handleClickPrev}
+        pageNumber={pageNumber}
+      />
     </div>
   );
 }
