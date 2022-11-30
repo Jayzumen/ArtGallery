@@ -1,19 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import SearchedArt from "./SearchedArt";
+import { fetchData } from "../fetchData";
 
-function Search({ query, onChange }) {
+function Search() {
+  const [query, setQuery] = useState("");
+  const [art, setArt] = useState(null);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // if input is empty do nothing
+    if (!query) {
+      setArt(null);
+      return;
+    }
+
+    // only search if input has 3 or more characters
+    if (query.length < 3) {
+      return;
+    }
+    fetchData(query).then((results) => {
+      if (results && results.data) {
+        console.log(results);
+        setArt(results.data);
+      }
+    });
+    e.target.reset();
+  };
+
   return (
-    <div className='h-full w-full px-20 py-5 '>
-      <div className='md:max-w-[700px] mx-auto'>
-        <p className='text-2xl font-semibold'>Find Art you love</p>
-        {/* search form */}
-        <form className='py-4'>
+    <div className='h-full w-full py-5'>
+      <div className='md:max-w-[700px] mx-auto px-20'>
+        <p className='text-2xl font-semibold text-center underline leading-7'>
+          Find Art you love
+        </p>
+        {/* Search Form */}
+        <form className='py-4' onSubmit={handleSubmit}>
           <label
             htmlFor='default-search'
             className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'>
             Search
           </label>
           <div className='relative'>
-            {/* search icon */}
+            {/* Search Icon */}
             <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
               <svg
                 aria-hidden='true'
@@ -34,21 +67,22 @@ function Search({ query, onChange }) {
             <input
               type='search'
               id='default-search'
-              className='block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              placeholder='Search artworks...'
-              value={query}
-              onChange={onChange}
+              className='block w-full p-4 pl-10 text-md border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              placeholder='Search for art...'
+              onChange={handleChange}
               required
             />
-            {/* search button */}
+            {/* Search Button */}
             <button
               type='submit'
-              className='text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+              onSubmit={handleSubmit}
+              className='text-white absolute right-2.5 bottom-2.5 bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
               Search
             </button>
           </div>
         </form>
       </div>
+      <SearchedArt art={art} />
     </div>
   );
 }
