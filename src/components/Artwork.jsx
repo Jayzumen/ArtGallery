@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { fetchOneArt } from '../fetchData';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function Artwork() {
   const { id } = useParams();
@@ -10,7 +12,6 @@ function Artwork() {
   useEffect(() => {
     const getArtwork = async () => {
       await fetchOneArt(id).then((res) => {
-        // console.log(res);
         setArtwork(res.data);
         if (!res) {
           setErrors(true);
@@ -27,11 +28,16 @@ function Artwork() {
           {/* Image Title */}
           <p className="text-center font-bold text-2xl py-4">{artwork.title}</p>
           {/* Image */}
-          <img
-            src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
-            alt={artwork.thumbnail?.alt_text}
-            className="mx-auto h-full w-full"
-          />
+          <div className="mx-auto w-fit h-fit">
+            <LazyLoadImage
+              className="max-h-[700px]"
+              effect="blur"
+              src={`https://www.artic.edu/iiif/2/${
+                artwork.image_id || artwork.alt_image_ids[0]
+              }/full/843,/0/default.jpg`}
+              alt={artwork.thumbnail?.alt_text}
+            />
+          </div>
           {/* Image Artist */}
           <p className="text-end lg:pr-20 py-2 text-lg font-bold">
             Artist: <span className="art-info">{artwork.artist_title}</span>

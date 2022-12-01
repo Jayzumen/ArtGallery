@@ -36,8 +36,7 @@ function Search() {
       return;
     }
     fetchData(query, pageNumber).then((results) => {
-      if (results && results.data) {
-        // console.log(results);
+      if (results) {
         setArt(results.data);
         setPageNumber(1);
       }
@@ -45,9 +44,10 @@ function Search() {
     e.target.reset();
   };
 
+  // To use pagination
   useEffect(() => {
     fetchData(query, pageNumber).then((results) => {
-      if (results && results.data) {
+      if (results) {
         setArt(results.data);
       }
     });

@@ -6,7 +6,7 @@ import Artwork from './components/Artwork';
 
 function App() {
   return (
-    <div className="font-poppins min-h-screen w-full pb-2">
+    <div className="font-poppins min-h-screen w-full mx-auto">
       <Navbar />
       <Routes>
         <Route path="/" element={<Search />} />

@@ -1,4 +1,6 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Link } from 'react-router-dom';
 import Pagination from './Pagination';
 
@@ -15,7 +17,7 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
         handleClickPrev={handleClickPrev}
         pageNumber={pageNumber}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {art.map((result) => (
           <Link
             to={`/${result.id}`}
@@ -33,10 +35,11 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
                 </p>
               )}
 
-              <img
-                className="mx-auto object-contain"
-                src={`https://www.artic.edu/iiif/2/${result?.image_id}/full/843,/0/default.jpg`}
+              <LazyLoadImage
+                className="mx-auto object-cover h-[450px] w-[450px] overflow-hidden"
+                src={`https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.png`}
                 alt={result.thumbnail?.alt_text}
+                effect="blur"
               />
             </div>
           </Link>
