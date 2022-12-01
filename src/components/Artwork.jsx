@@ -64,8 +64,7 @@ function Artwork() {
               <span className="art-info">{artwork.artwork_type_title}</span>
             </p>
             <p>
-              Style:
-              <span className="art-info">{artwork.medium_display}</span>
+              Style: <span className="art-info">{artwork.medium_display}</span>
             </p>
           </div>
           {/* Button to homepage */}
