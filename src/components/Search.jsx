@@ -7,6 +7,7 @@ function Search() {
   const [art, setArt] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  // HandleClick function for Pagination
   const handleClickNext = () => {
     setPageNumber(pageNumber + 1);
   };
@@ -18,19 +19,21 @@ function Search() {
     setPageNumber(pageNumber - 1);
   };
 
+  // handlechange function for input
   const handleChange = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
   };
 
+  // submit function for search
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // if input is empty do nothing
     if (!query) {
       setArt(null);
       return;
     }
-
     // only search if input has 3 or more characters
     if (query.length < 3) {
       return;
@@ -44,7 +47,7 @@ function Search() {
     e.target.reset();
   };
 
-  // To use pagination
+  // To use pagination and load default gallery
   useEffect(() => {
     fetchData(query, pageNumber).then((results) => {
       if (results) {

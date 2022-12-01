@@ -6,15 +6,15 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function Artwork() {
   const { id } = useParams();
-  const [artwork, setArtwork] = useState('');
-  const [errors, setErrors] = useState(false);
+  const [artwork, setArtwork] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getArtwork = async () => {
       await fetchOneArt(id).then((res) => {
         setArtwork(res.data);
-        if (!res) {
-          setErrors(true);
+        if (!res.ok) {
+          setError(error);
         }
       });
     };
@@ -32,16 +32,20 @@ function Artwork() {
             <LazyLoadImage
               className="max-h-[700px]"
               effect="blur"
-              src={`https://www.artic.edu/iiif/2/${
-                artwork.image_id || artwork.alt_image_ids[0]
-              }/full/843,/0/default.jpg`}
+              src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
               alt={artwork.thumbnail?.alt_text}
             />
           </div>
           {/* Image Artist */}
-          <p className="text-end lg:pr-20 py-2 text-lg font-bold">
-            Artist: <span className="art-info">{artwork.artist_title}</span>
-          </p>
+          {artwork.artist_title ? (
+            <p className="text-end lg:pr-20 py-2 text-lg font-bold">
+              Artist: <span className="art-info"> {artwork.artist_title}</span>
+            </p>
+          ) : (
+            <p className="text-end lg:pr-20 py-2 text-lg font-bold">
+              Arist: <span className="art-info"> No data found</span>
+            </p>
+          )}
           <div className="font-semibold text-lg mt-4 leading-10">
             {/* Artist Bio  */}
             <p>
@@ -79,7 +83,7 @@ function Artwork() {
       ) : (
         // Display error if one occurs else display "loading"
         <div className="text-center pt-10 text-4xl font-extrabold">
-          {errors ? (
+          {error ? (
             <div>
               <p className=" text-red-800">Something went wrong</p>
               <Link to="/">
