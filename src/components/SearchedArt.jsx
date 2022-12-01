@@ -24,7 +24,7 @@ function SearchedArt({
         {art.map((result) => (
           <Link
             to={`/${result.id}`}
-            className='m-2 bg-slate-400 border-black border-2'
+            className='m-2 bg-slate-300 border-black border-2'
             key={result.id}>
             <div className='text-center h-full w-full'>
               {result.title.length > 70 ? (

@@ -10,7 +10,7 @@ function Artwork() {
   useEffect(() => {
     const getArtwork = async () => {
       await fetchOneArt(id).then((res) => {
-        console.log(res);
+        // console.log(res);
         setArtwork(res.data);
         if (!res) {
           setErrors(true);
