@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Search from './components/Search';
-import Artwork from './components/Artwork';
+import Artwork from './pages/Artwork';
+import Search from './pages/Search';
 
 function App() {
   return (

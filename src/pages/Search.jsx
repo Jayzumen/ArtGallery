@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SearchedArt from './SearchedArt';
+import SearchedArt from '../components/SearchedArt';
 import { fetchData } from '../fetchData';
 
 function Search() {
@@ -42,6 +42,12 @@ function Search() {
   useEffect(() => {
     fetchData(query, pageNumber).then((results) => {
       if (results) {
+        // If last page is reached don't allow to go further
+        if (results.pagination.current_page > results.pagination.total_pages) {
+          setPageNumber(results.pagination.total_pages);
+          return;
+        }
+        setPageNumber(results.pagination.current_page);
         setArt(results.data);
       }
     });

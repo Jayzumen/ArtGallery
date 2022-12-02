@@ -10,6 +10,7 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
     return null;
   }
 
+  // console.log(art, 'art')
   return (
     <div className="w-full h-full">
       {/* Pagination */}

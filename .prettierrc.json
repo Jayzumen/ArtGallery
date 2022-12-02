@@ -2,6 +2,7 @@
   "singleQuote": true,
   "printWidth": 80,
   "endOfLine": "crlf",
+  "trailingComma": "es5",
   "overrides": [
     {
       "files": ["*.html", "*.css"],
