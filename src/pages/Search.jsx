@@ -32,6 +32,7 @@ function Search() {
     e.preventDefault();
     fetchData(query, pageNumber).then((results) => {
       if (results) {
+        // If last page is reached disable next button
         if (
           results.pagination.current_page === results.pagination.total_pages
         ) {
@@ -52,7 +53,7 @@ function Search() {
   useEffect(() => {
     fetchData(query, pageNumber).then((results) => {
       if (results) {
-        // If last page is reached don't allow to go further
+        // If last page is reached disable next button
         if (
           results.pagination.current_page === results.pagination.total_pages
         ) {
