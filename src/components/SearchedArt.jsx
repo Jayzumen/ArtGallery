@@ -4,7 +4,14 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Link } from 'react-router-dom';
 import Pagination from './Pagination';
 
-function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
+function SearchedArt({
+  art,
+  handleClickNext,
+  handleClickPrev,
+  isNextButtonDisabled,
+  isPrevButtonDisabled,
+  pageNumber,
+}) {
   // if art is not defined do nothing
   if (!art) {
     return null;
@@ -17,6 +24,8 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
       <Pagination
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
+        isPrevButtonDisabled={isPrevButtonDisabled}
+        isNextButtonDisabled={isNextButtonDisabled}
         pageNumber={pageNumber}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -52,6 +61,8 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
       <Pagination
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
+        isNextButtonDisabled={isNextButtonDisabled}
+        isPrevButtonDisabled={isPrevButtonDisabled}
         pageNumber={pageNumber}
       />
     </div>

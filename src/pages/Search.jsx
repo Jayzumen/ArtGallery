@@ -6,16 +6,18 @@ function Search() {
   const [query, setQuery] = useState('');
   const [art, setArt] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isPrevButtonDisabled, setIsPrevButtonDisabled] = useState(true);
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   // HandleClick function for Pagination
   const handleClickNext = () => {
+    if (isNextButtonDisabled) {
+      setIsPrevButtonDisabled(false);
+    }
     setPageNumber(pageNumber + 1);
   };
 
   const handleClickPrev = () => {
-    if (pageNumber <= 1) {
-      return;
-    }
     setPageNumber(pageNumber - 1);
   };
 
@@ -28,11 +30,19 @@ function Search() {
   // submit function for search
   const handleSubmit = (e) => {
     e.preventDefault();
-
     fetchData(query, pageNumber).then((results) => {
       if (results) {
+        if (
+          results.pagination.current_page === results.pagination.total_pages
+        ) {
+          setPageNumber(results.pagination.current_page);
+          setIsNextButtonDisabled(true);
+        } else {
+          setIsNextButtonDisabled(false);
+        }
         setArt(results.data);
         setPageNumber(1);
+        setIsPrevButtonDisabled(true);
       }
     });
     e.target.reset();
@@ -43,12 +53,21 @@ function Search() {
     fetchData(query, pageNumber).then((results) => {
       if (results) {
         // If last page is reached don't allow to go further
-        if (results.pagination.current_page > results.pagination.total_pages) {
-          setPageNumber(results.pagination.total_pages);
-          return;
+        if (
+          results.pagination.current_page === results.pagination.total_pages
+        ) {
+          setPageNumber(results.pagination.current_pages);
+          setIsNextButtonDisabled(true);
+        } else {
+          setIsNextButtonDisabled(false);
         }
         setPageNumber(results.pagination.current_page);
         setArt(results.data);
+        if (pageNumber === 1) {
+          setIsPrevButtonDisabled(true);
+        } else {
+          setIsPrevButtonDisabled(false);
+        }
       }
     });
   }, [pageNumber]);
@@ -101,7 +120,7 @@ function Search() {
               <button
                 disabled
                 type="submit"
-                className="text-white absolute right-2.5 bottom-2.5 bg-slate-900  font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-800 "
+                className="text-white absolute right-2.5 bottom-2.5 bg-slate-500 font-medium rounded-lg text-sm px-4 py-2 dark:bg-slate-500 "
               >
                 Search
               </button>
@@ -121,6 +140,8 @@ function Search() {
         art={art}
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
+        isPrevButtonDisabled={isPrevButtonDisabled}
+        isNextButtonDisabled={isNextButtonDisabled}
         pageNumber={pageNumber}
       />
     </div>

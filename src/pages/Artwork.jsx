@@ -25,7 +25,7 @@ function Artwork() {
     <div>
       {artwork ? (
         <div className="p-10 mx-auto xl:max-w-[1400px] xl:flex xl:justify-start xl:p-0">
-          <div className="w-fit h-fit text-center">
+          <div className="mx-auto w-fit h-fit text-center">
             {/* Image Title */}
             <p className="text-center font-bold text-2xl py-4">
               {artwork.title}
@@ -81,7 +81,7 @@ function Artwork() {
               <Link to="/" className="text-center h-fit">
                 <div className="">
                   <button type="button" className="btn mx-0">
-                    Go Back
+                    HomePage
                   </button>
                 </div>
               </Link>
