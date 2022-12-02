@@ -12,6 +12,7 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
 
   return (
     <div className="w-full h-full">
+      {/* Pagination */}
       <Pagination
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
@@ -36,7 +37,7 @@ function SearchedArt({ art, handleClickNext, handleClickPrev, pageNumber }) {
               )}
 
               <LazyLoadImage
-                className="mx-auto object-contain h-[450px] w-[450px] overflow-hidden"
+                className="mx-auto object-contain h-[450px] w-[450px]"
                 src={`https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`}
                 alt={result.thumbnail?.alt_text}
                 effect="blur"

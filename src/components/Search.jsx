@@ -30,21 +30,20 @@ function Search() {
     e.preventDefault();
 
     // if input is empty do nothing
-    if (!query) {
-      setArt(null);
-      return;
-    }
+    // if (!query) {
+    //   setArt(null);
+    //   return;
+    // }
     // only search if input has 3 or more characters
-    if (query.length < 3) {
-      return;
-    }
+    // if (query.length < 3) {
+    //   return;
+    // }
     fetchData(query, pageNumber).then((results) => {
       if (results) {
         setArt(results.data);
         setPageNumber(1);
       }
     });
-    setQuery('');
     e.target.reset();
   };
 
