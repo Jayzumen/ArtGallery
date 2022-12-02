@@ -6,7 +6,7 @@ function Pagination({ handleClickPrev, handleClickNext, pageNumber }) {
       <button type="button" onClick={handleClickPrev} className="btn">
         Prev Page
       </button>
-      <p className="font-bold text-xl">{pageNumber}</p>
+      <p className="font-bold text-xl">Page: {pageNumber}</p>
       <button type="button" onClick={handleClickNext} className="btn">
         Next Page
       </button>
