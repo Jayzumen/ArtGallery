@@ -8,7 +8,7 @@ function Pagination({
   pageNumber,
 }) {
   return (
-    <div className="p-5 flex justify-center items-center">
+    <div className="flex items-center justify-center p-5">
       {isPrevButtonDisabled ? (
         <button
           disabled
@@ -24,7 +24,7 @@ function Pagination({
         </button>
       )}
 
-      <p className="font-bold text-xl">Page: {pageNumber}</p>
+      <p className="text-xl font-bold">Page: {pageNumber}</p>
 
       {isNextButtonDisabled ? (
         <button

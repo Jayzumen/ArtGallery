@@ -75,18 +75,18 @@ function Search() {
 
   return (
     <div className="h-full w-full py-5">
-      <div className="md:max-w-[700px] mx-auto px-20">
-        <p className="text-2xl font-semibold text-center underline leading-7">
+      <div className="mx-auto px-20 md:max-w-[700px]">
+        <p className="text-center text-2xl font-semibold leading-7 underline">
           Find Art you love
         </p>
         {/* Search Form */}
         <form className="py-4" onSubmit={handleSubmit}>
           <div className="relative">
             {/* Search Icon */}
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <svg
                 aria-hidden="true"
-                className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                className="h-5 w-5 text-gray-500 dark:text-gray-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -102,7 +102,7 @@ function Search() {
             </div>
             <label
               htmlFor="default-search"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+              className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Search
             </label>
@@ -111,7 +111,7 @@ function Search() {
               type="search"
               name="default-search"
               id="default-search"
-              className="block w-full p-4 pl-10 text-md border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="text-md block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Search for art..."
               onChange={handleChange}
               required
@@ -121,7 +121,7 @@ function Search() {
               <button
                 disabled
                 type="submit"
-                className="text-white absolute right-2.5 bottom-2.5 bg-slate-500 font-medium rounded-lg text-sm px-4 py-2 dark:bg-slate-500 "
+                className="absolute right-2.5 bottom-2.5 rounded-lg bg-slate-500 px-4 py-2 text-sm font-medium text-white dark:bg-slate-500 "
               >
                 Search
               </button>
@@ -129,7 +129,7 @@ function Search() {
               <button
                 type="submit"
                 onSubmit={handleSubmit}
-                className="text-white absolute right-2.5 bottom-2.5 bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="absolute right-2.5 bottom-2.5 rounded-lg bg-slate-700 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Search
               </button>

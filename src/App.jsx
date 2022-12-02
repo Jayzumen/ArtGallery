@@ -6,7 +6,7 @@ import Search from './pages/Search';
 
 function App() {
   return (
-    <div className="font-poppins min-h-screen w-full mx-auto dark:bg-slate-900 dark:text-white">
+    <div className="mx-auto min-h-screen w-full font-poppins dark:bg-slate-900 dark:text-white">
       <Navbar />
       <Routes>
         <Route path="/" element={<Search />} />

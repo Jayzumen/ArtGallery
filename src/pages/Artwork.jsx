@@ -24,10 +24,10 @@ function Artwork() {
   return (
     <div>
       {artwork ? (
-        <div className="p-10 mx-auto xl:max-w-[1400px] xl:flex xl:justify-start xl:p-0">
-          <div className="mx-auto w-fit h-fit text-center">
+        <div className="mx-auto p-10 xl:flex xl:max-w-[1400px] xl:justify-start xl:p-0">
+          <div className="mx-auto h-fit w-fit text-center">
             {/* Image Title */}
-            <p className="text-center font-bold text-2xl py-4">
+            <p className="py-4 text-center text-2xl font-bold">
               {artwork.title}
             </p>
             {/* Image */}
@@ -39,18 +39,18 @@ function Artwork() {
             />
           </div>
           {/* Image Artist */}
-          <div className="h-fit flex-col my-auto ml-4">
+          <div className="my-auto ml-4 h-fit flex-col">
             {artwork.artist_title ? (
-              <p className="text-end xl:text-start py-2 text-lg font-bold">
+              <p className="py-2 text-end text-lg font-bold xl:text-start">
                 Artist:{' '}
                 <span className="art-info"> {artwork.artist_title}</span>
               </p>
             ) : (
-              <p className="text-end xl:text-start py-2 text-lg font-bold">
+              <p className="py-2 text-end text-lg font-bold xl:text-start">
                 Arist: <span className="art-info"> No data found</span>
               </p>
             )}
-            <div className="font-semibold text-lg mt-4 leading-10">
+            <div className="mt-4 text-lg font-semibold leading-10">
               {/* Artist Bio  */}
               <p>
                 Artist Bio:{' '}
@@ -77,8 +77,8 @@ function Artwork() {
               </p>
             </div>
             {/* Button to homepage */}
-            <div className="mt-5 xl:mt-10 w-fit h-fit mx-auto">
-              <Link to="/" className="text-center h-fit">
+            <div className="mx-auto mt-5 h-fit w-fit xl:mt-10">
+              <Link to="/" className="h-fit text-center">
                 <div className="">
                   <button type="button" className="btn mx-0">
                     HomePage
@@ -90,14 +90,14 @@ function Artwork() {
         </div>
       ) : (
         // Display error if one occurs else display "loading"
-        <div className="text-center pt-10 text-4xl font-extrabold">
+        <div className="pt-10 text-center text-4xl font-extrabold">
           {error ? (
             <div>
-              <p className=" text-red-800">Something went wrong</p>
+              <p className="text-red-800 ">Something went wrong</p>
               <Link to="/">
                 <button
                   type="button"
-                  className="m-8 p-6 rounded-lg bg-slate-700 text-white hover:bg-slate-800"
+                  className="m-8 rounded-lg bg-slate-700 p-6 text-white hover:bg-slate-800"
                 >
                   Go back to Homepage
                 </button>

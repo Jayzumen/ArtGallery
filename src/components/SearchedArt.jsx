@@ -19,7 +19,7 @@ function SearchedArt({
 
   // console.log(art, 'art')
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       {/* Pagination */}
       <Pagination
         handleClickNext={handleClickNext}
@@ -32,22 +32,22 @@ function SearchedArt({
         {art.map((result) => (
           <Link
             to={`/${result.id}`}
-            className="m-2 bg-slate-300 dark:bg-slate-800 dark:border-slate-200 border-black border-2"
+            className="m-2 border-2 border-black bg-slate-300 dark:border-slate-200 dark:bg-slate-800"
             key={result.id}
           >
-            <div className="text-center h-full w-full">
+            <div className="h-full w-full text-center">
               {result.title.length > 70 ? (
-                <p className="min-h-[140px] font-medium text-xl">
+                <p className="min-h-[140px] text-xl font-medium">
                   {result.title}
                 </p>
               ) : (
-                <p className="min-h-[140px] pt-5 text-center font-semibold text-xl">
+                <p className="min-h-[140px] pt-5 text-center text-xl font-semibold">
                   {result.title}
                 </p>
               )}
 
               <LazyLoadImage
-                className="mx-auto object-contain h-[450px] w-[450px]"
+                className="mx-auto h-[450px] w-[450px] object-contain"
                 src={`https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`}
                 alt={result.thumbnail?.alt_text}
                 effect="blur"
