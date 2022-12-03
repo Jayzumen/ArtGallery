@@ -10,7 +10,7 @@ function SearchedArt({
   handleClickPrev,
   isNextButtonDisabled,
   isPrevButtonDisabled,
-  pageNumber,
+  pageNumber
 }) {
   // if art is not defined do nothing
   if (!art) {

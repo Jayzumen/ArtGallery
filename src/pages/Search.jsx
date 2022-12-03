@@ -30,6 +30,9 @@ function Search() {
   // submit function for search
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (query < 3) {
+      return;
+    }
     fetchData(query, pageNumber).then((results) => {
       if (results) {
         // If last page is reached disable next button
@@ -46,7 +49,6 @@ function Search() {
         setIsPrevButtonDisabled(true);
       }
     });
-    e.target.reset();
   };
 
   // To use pagination and load default gallery
@@ -62,8 +64,11 @@ function Search() {
         } else {
           setIsNextButtonDisabled(false);
         }
+        // set pageNumber to page of fetched data
         setPageNumber(results.pagination.current_page);
         setArt(results.data);
+
+        // if pageNumber = 1 disable prev Button, to prevent fetching non existing data
         if (pageNumber === 1) {
           setIsPrevButtonDisabled(true);
         } else {
@@ -113,27 +118,20 @@ function Search() {
               id="default-search"
               className="text-md block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Search for art..."
+              value={query}
               onChange={handleChange}
               required
             />
+
             {/* Search Button */}
-            {query.length < 3 ? (
-              <button
-                disabled
-                type="submit"
-                className="absolute right-2.5 bottom-2.5 rounded-lg bg-slate-500 px-4 py-2 text-sm font-medium text-white dark:bg-slate-500 "
-              >
-                Search
-              </button>
-            ) : (
-              <button
-                type="submit"
-                onSubmit={handleSubmit}
-                className="absolute right-2.5 bottom-2.5 rounded-lg bg-slate-700 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Search
-              </button>
-            )}
+            <button
+              disabled={query.length < 3}
+              type="submit"
+              onClick={handleSubmit}
+              className="absolute right-2.5 bottom-2.5 rounded-lg bg-slate-700 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:dark:bg-slate-500"
+            >
+              Search
+            </button>
           </div>
         </form>
       </div>

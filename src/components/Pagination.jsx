@@ -5,7 +5,7 @@ function Pagination({
   handleClickNext,
   isPrevButtonDisabled,
   isNextButtonDisabled,
-  pageNumber,
+  pageNumber
 }) {
   return (
     <div className="flex items-center justify-center p-5">

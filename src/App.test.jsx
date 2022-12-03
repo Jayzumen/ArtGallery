@@ -1,16 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
+import Navbar from './components/Navbar';
+import Search from './pages/Search';
+import Artwork from './pages/Artwork';
 
-describe('App', () => {
-  it('Renders main app', () => {
-    // Arrange
-    render(<App />);
-    // Act
-    // Expect
-    expect(
-      screen.getByRole('div', {
-        level: 1,
-      }),
-    ).toHaveProperty('Navbar');
-  });
+test('Renders Elements properly', () => {
+  // Arrange
+  render(<App />);
+  // Act
+  // Expect
+  expect(App).toContain(Navbar, Search, Artwork);
 });
