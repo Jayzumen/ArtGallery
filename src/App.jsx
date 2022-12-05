@@ -6,15 +6,15 @@ import Search from './pages/Search';
 
 function App() {
   return (
-    <div className="mx-auto min-h-screen min-w-full font-poppins dark:bg-slate-900 dark:text-white">
-      <Router>
+    <Router>
+      <div className="mx-auto min-h-screen min-w-full font-poppins dark:bg-slate-900 dark:text-white">
         <Navbar />
         <Routes>
           <Route path="/" element={<Search />} />
           <Route path="/artwork/:id" element={<Artwork />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
