@@ -17,7 +17,6 @@ function SearchedArt({
     return null;
   }
 
-  // console.log(art, 'art')
   return (
     <div className="h-full w-full">
       {/* Pagination */}
