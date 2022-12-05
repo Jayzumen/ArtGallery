@@ -28,10 +28,10 @@ function SearchedArt({
         isNextButtonDisabled={isNextButtonDisabled}
         pageNumber={pageNumber}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <div className="grid grid-cols-1 sm:px-20 lg:grid-cols-2 lg:px-2 xl:grid-cols-3">
         {art.map((result) => (
           <Link
-            to={`/${result.id}`}
+            to={`/artwork/${result.id}`}
             className="m-2 border-2 border-black bg-slate-300 dark:border-slate-200 dark:bg-slate-800"
             key={result.id}
           >
