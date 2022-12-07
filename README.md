@@ -10,6 +10,8 @@ Using "Art Institute of Chicago" API for artwork details.
 
 ## To run app
 
-Use "git clone 'repository'".
-After cloning repo use npm install.
-Then use "npm run dev" to run the app.
+- Use "git clone".
+- After cloning repo use "npm install"
+- run "npm lint" to run the linters
+- to test the app run "npm test"
+- Then use "npm run dev" to run the app
