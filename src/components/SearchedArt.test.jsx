@@ -13,7 +13,7 @@ describe('SearchedArt component', () => {
     {
       id: 1,
       title: 'Art 1',
-      image_id: '129884',
+      image_id: '1',
       thumbnail: {
         alt_text: 'Art 1 thumbnail'
       }
@@ -21,7 +21,7 @@ describe('SearchedArt component', () => {
     {
       id: 2,
       title: 'Art 2',
-      image_id: '28560',
+      image_id: '2',
       thumbnail: {
         alt_text: 'Art 2 thumbnail'
       }
@@ -48,21 +48,20 @@ describe('SearchedArt component', () => {
     expect(artItems[1]).toHaveTextContent('Art 2');
   });
 
-  //   TODO: Find a way to get the src to not be null
-  //   test('renders correct image for each artwork', async () => {
-  //     const { getAllByText } = render(
-  //       <Router>
-  //         <SearchedArt art={art} />
-  //       </Router>
-  //     );
-  //     const artItems = await waitFor(() => getAllByText(/art/i));
-  //     expect(artItems[0]).toHaveAttribute(
-  //       'src',
-  //       'https://www.artic.edu/iiif/2/129884/full/843,/0/default.jpg'
-  //     );
-  //     expect(artItems[1]).toHaveAttribute(
-  //       'src',
-  //       'https://www.artic.edu/iiif/2/28560/full/843,/0/default.jpg'
-  //     );
-  //   });
+  test('renders correct image for each artwork', () => {
+    const { getAllByRole } = render(
+      <Router>
+        <SearchedArt art={art} />
+      </Router>
+    );
+    const artItems = getAllByRole(/img/i);
+    expect(artItems[0]).toHaveAttribute(
+      'src',
+      'https://www.artic.edu/iiif/2/1/full/843,/0/default.jpg'
+    );
+    expect(artItems[1]).toHaveAttribute(
+      'src',
+      'https://www.artic.edu/iiif/2/2/full/843,/0/default.jpg'
+    );
+  });
 });
