@@ -1,3 +1,4 @@
+// function for fetching the artwork data with a limit of 20 items
 export const fetchData = async (query, pageNumber) => {
   const url = `https://api.artic.edu/api/v1/artworks/search?q=${query}&page=${pageNumber}&limit=20&fields=id,title,image_id,thumbnail`;
   const res = await fetch(url);
@@ -7,6 +8,7 @@ export const fetchData = async (query, pageNumber) => {
   return res.json();
 };
 
+// fetch function for fetching a single Artwork
 export const fetchOneArt = async (id) => {
   const url = `https://api.artic.edu/api/v1/artworks/${id}`;
   const res = await fetch(url);
